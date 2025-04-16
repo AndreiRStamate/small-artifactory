@@ -1,4 +1,5 @@
 from flask import Flask, request, send_from_directory, jsonify
+from flask import render_template_string
 import os
 
 app = Flask(__name__)
@@ -36,6 +37,28 @@ def serve_file(filename):
         return send_from_directory(UPLOAD_FOLDER, filename)
     except FileNotFoundError:
         return jsonify({'error': 'File not found'}), 404
+
+@app.route('/files', methods=['GET'])
+def list_files():
+    files = os.listdir(UPLOAD_FOLDER)
+    files = [f for f in files if f.endswith('.json')]
+
+    html_template = """
+    <!doctype html>
+    <html>
+    <head><title>Available JSON Files</title></head>
+    <body>
+        <h2>📦 Available JSON Files</h2>
+        <ul>
+        {% for file in files %}
+            <li><a href="/files/{{ file }}">{{ file }}</a></li>
+        {% endfor %}
+        </ul>
+    </body>
+    </html>
+    """
+
+    return render_template_string(html_template, files=files)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6969)
