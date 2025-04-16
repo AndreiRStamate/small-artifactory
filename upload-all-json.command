@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Fetch cache
+cd /Users/a144185i/workspace/expertbet
+python3 main.py
+
 # Navigate to where your .json files are (optional)
 cd /Users/a144185i/workspace/expertbet/cache
 
