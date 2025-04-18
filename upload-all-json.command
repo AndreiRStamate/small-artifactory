@@ -12,7 +12,7 @@ echo "📤 Uploading all .json files to your local artifactory..."
 for file in *.json; do
   if [[ -f "$file" ]]; then
     echo "→ Uploading $file..."
-    curl -s -X POST -F "file=@$file" http://localhost:6969/upload
+    curl -s -X POST -F "file=@$file" http://localhost:6969/football/upload
     echo ""
   fi
 done

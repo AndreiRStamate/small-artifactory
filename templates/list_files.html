@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+<head><title>Available JSON Files</title></head>
+<body>
+    <h2>📦 Available JSON Files for {{ sport }}</h2>
+    <ul>
+    {% for file in files %}
+        <li><a href="/{{ sport }}/{{ file }}">{{ file }}</a></li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
