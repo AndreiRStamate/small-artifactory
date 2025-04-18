@@ -4,5 +4,5 @@
 cd "$(dirname "$0")"
 
 # Start the server
-nohup python3 run_server.py > server.log 2>&1 &
+nohup python3 run_server.py &
 echo "Server started! Check server.log for output."
