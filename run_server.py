@@ -34,7 +34,7 @@ try:
     public_url = tunnel_info['tunnels'][0]['public_url']
     print(f"🚀 Public URL: {public_url}")
     # Optionally open the URL in a browser
-    webbrowser.open(public_url + "/files")
+    webbrowser.open(public_url)
 except Exception as e:
     print("⚠️ Could not get ngrok URL:", e)
 
