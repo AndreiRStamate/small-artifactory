@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Define the API key
+API_KEY="your-secure-api-key"
+
 # Fetch cache
 cd /Users/a144185i/workspace/expertbet
 python3 main.py
@@ -12,7 +15,7 @@ echo "📤 Uploading all football .json files to your local artifactory..."
 for file in *.json; do
   if [[ -f "$file" ]]; then
     echo "→ Uploading $file..."
-    curl -s -X POST -F "file=@$file" http://localhost:6969/football/upload
+    curl -s -X POST -H "X-API-KEY: $API_KEY" -F "file=@$file" http://localhost:6969/football/upload
     echo ""
   fi
 done
@@ -27,7 +30,7 @@ echo "📤 Uploading all basketball .json files to your local artifactory..."
 for file in *.json; do
   if [[ -f "$file" ]]; then
     echo "→ Uploading $file..."
-    curl -s -X POST -F "file=@$file" http://localhost:6969/basketball/upload
+    curl -s -X POST -H "X-API-KEY: $API_KEY" -F "file=@$file" http://localhost:6969/basketball/upload
     echo ""
   fi
 done
@@ -42,7 +45,7 @@ echo "📤 Uploading all hockey .json files to your local artifactory..."
 for file in *.json; do
   if [[ -f "$file" ]]; then
     echo "→ Uploading $file..."
-    curl -s -X POST -F "file=@$file" http://localhost:6969/hockey/upload
+    curl -s -X POST -H "X-API-KEY: $API_KEY" -F "file=@$file" http://localhost:6969/hockey/upload
     echo ""
   fi
 done
@@ -57,7 +60,7 @@ echo "📤 Uploading all cricket .json files to your local artifactory..."
 for file in *.json; do
   if [[ -f "$file" ]]; then
     echo "→ Uploading $file..."
-    curl -s -X POST -F "file=@$file" http://localhost:6969/cricket/upload
+    curl -s -X POST -H "X-API-KEY: $API_KEY" -F "file=@$file" http://localhost:6969/cricket/upload
     echo ""
   fi
 done

@@ -1,17 +1,21 @@
 import logging
 import os
-from flask import Blueprint, request
+from flask import request
 from config import get_upload_folder
-from utils.file_utils import handle_file_upload, serve_file, list_files
+from utils.custom_blueprint import SecureBlueprint
+from utils.file_utils import allowed_file, handle_file_upload, serve_file, list_files
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-cricket_bp = Blueprint('cricket', __name__)
+cricket_bp = SecureBlueprint('cricket', __name__)
 UPLOAD_FOLDER = get_upload_folder('cricket')
 
 @cricket_bp.route('/upload', methods=['POST'])
 def upload_file():
+    file = request.files.get('file')
+    if not file or not allowed_file(file.filename):
+        return {"error": "Invalid file type"}, 400
     return handle_file_upload(request, UPLOAD_FOLDER, logger)
 
 @cricket_bp.route('/<filename>', methods=['GET'])
