@@ -34,7 +34,7 @@ done
 
 echo "✅ Done uploading basketball."
 
-# Navigate to basketball cache directory
+# Navigate to hockey cache directory
 cd /Users/a144185i/workspace/expertbet/cache/hockey
 
 echo "📤 Uploading all hockey .json files to your local artifactory..."
@@ -48,3 +48,18 @@ for file in *.json; do
 done
 
 echo "✅ Done uploading hockey."
+
+# Navigate to cricket cache directory
+cd /Users/a144185i/workspace/expertbet/cache/cricket
+
+echo "📤 Uploading all cricket .json files to your local artifactory..."
+
+for file in *.json; do
+  if [[ -f "$file" ]]; then
+    echo "→ Uploading $file..."
+    curl -s -X POST -F "file=@$file" http://localhost:6969/cricket/upload
+    echo ""
+  fi
+done
+
+echo "✅ Done uploading cricket."
