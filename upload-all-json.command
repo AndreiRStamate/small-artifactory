@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the API key
-API_KEY="your-secure-api-key"
+API_KEY="bascalie"
 
 # Fetch cache
 cd /Users/a144185i/workspace/expertbet

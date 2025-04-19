@@ -1,7 +1,7 @@
 import os
 from flask import request, abort
 
-API_KEY = os.getenv("API_KEY", "your-secure-api-key")
+API_KEY = os.getenv("API_KEY")
 
 def require_api_key():
     """Validate the API key from the request headers."""

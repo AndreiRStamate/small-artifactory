@@ -1,8 +1,11 @@
+from dotenv import load_dotenv
 from flask import Flask, url_for
 from routes.football import football_bp
 from routes.basketball import basketball_bp
 from routes.hockey import hockey_bp
 from routes.cricket import cricket_bp
+
+load_dotenv()
 
 app = Flask(__name__)
 
