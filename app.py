@@ -5,7 +5,7 @@ from routes.basketball import basketball_bp
 from routes.hockey import hockey_bp
 from routes.cricket import cricket_bp
 
-load_dotenv()
+load_dotenv(override=True)
 
 app = Flask(__name__)
 

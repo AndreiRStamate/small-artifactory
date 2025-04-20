@@ -8,7 +8,7 @@ cd /Users/a144185i/workspace/expertbet
 python3 main.py
 
 # Navigate to football cache directory
-cd /Users/a144185i/workspace/expertbet/cache/soccer
+cd /Users/a144185i/workspace/expertbet/cache/football
 
 echo "📤 Uploading all football .json files to your local artifactory..."
 
