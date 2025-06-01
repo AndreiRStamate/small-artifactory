@@ -4,6 +4,7 @@ from routes.football import football_bp
 from routes.basketball import basketball_bp
 from routes.hockey import hockey_bp
 from routes.cricket import cricket_bp
+from routes.ip import ip_bp
 
 load_dotenv(override=True)
 
@@ -13,6 +14,7 @@ app.register_blueprint(football_bp, url_prefix='/football')
 app.register_blueprint(basketball_bp, url_prefix='/basketball')
 app.register_blueprint(hockey_bp, url_prefix='/hockey')
 app.register_blueprint(cricket_bp, url_prefix='/cricket')
+app.register_blueprint(ip_bp, url_prefix='/ip')
 
 @app.route('/')
 def index():
