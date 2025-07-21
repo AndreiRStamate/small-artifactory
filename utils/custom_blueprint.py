@@ -8,3 +8,8 @@ class SecureBlueprint(Blueprint):
 
     def check_api_key(self):
         require_api_key()
+
+class OpenBlueprint(Blueprint):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        pass

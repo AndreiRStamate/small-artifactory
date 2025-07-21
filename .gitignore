@@ -3,3 +3,4 @@ venv
 uploads
 server.log
 nohup.out
+archive_uploads
