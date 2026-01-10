@@ -5,7 +5,8 @@ API_KEY="bascalie"
 
 # Fetch cache
 cd /Users/a144185i/workspace/expertbet
-python3 main.py
+./runfootball.sh
+./runbasketball.sh
 
 # Navigate to football cache directory
 cd /Users/a144185i/workspace/expertbet/cache/football
@@ -37,32 +38,7 @@ done
 
 echo "✅ Done uploading basketball."
 
-# Navigate to hockey cache directory
-cd /Users/a144185i/workspace/expertbet/cache/hockey
 
-echo "📤 Uploading all hockey .json files to your local artifactory..."
-
-for file in *.json; do
-  if [[ -f "$file" ]]; then
-    echo "→ Uploading $file..."
-    curl -s -X POST -H "X-API-KEY: $API_KEY" -F "file=@$file" http://localhost:6969/hockey/upload
-    echo ""
-  fi
-done
-
-echo "✅ Done uploading hockey."
-
-# Navigate to cricket cache directory
-cd /Users/a144185i/workspace/expertbet/cache/cricket
-
-echo "📤 Uploading all cricket .json files to your local artifactory..."
-
-for file in *.json; do
-  if [[ -f "$file" ]]; then
-    echo "→ Uploading $file..."
-    curl -s -X POST -H "X-API-KEY: $API_KEY" -F "file=@$file" http://localhost:6969/cricket/upload
-    echo ""
-  fi
-done
-
-echo "✅ Done uploading cricket."
+# also do the discord part
+cd /Users/a144185i/workspace/DiscordBot
+python3 src/main.py
