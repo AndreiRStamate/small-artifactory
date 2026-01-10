@@ -1,6 +1,7 @@
 # flyctl launch added from .gitignore
 **/.env
 **/venv
+**/uploads
 **/server.log
 **/nohup.out
 **/archive_uploads
