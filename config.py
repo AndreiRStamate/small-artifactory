@@ -1,6 +1,6 @@
 import os
 
-BASE_UPLOAD_FOLDER = 'uploads'
+BASE_UPLOAD_FOLDER = '/app/uploads'
 
 def get_upload_folder(sport):
     folder = os.path.join(BASE_UPLOAD_FOLDER, sport)
