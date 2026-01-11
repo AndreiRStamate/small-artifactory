@@ -39,3 +39,22 @@ def list_files(upload_folder, sport):
     files = os.listdir(upload_folder)
     files = [f for f in files if allowed_file(f)]
     return render_template('list_files.html', sport=sport, files=files)
+
+def delete_all_files(upload_folder, logger):
+    """
+    Deletes all files in the given upload_folder.
+    Returns a list of deleted filenames.
+    """
+    try:
+        files = os.listdir(upload_folder)
+        deleted_files = []
+        for filename in files:
+            file_path = os.path.join(upload_folder, filename)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+                deleted_files.append(filename)
+        logger.info(f"Deleted files: {deleted_files}")
+        return deleted_files
+    except Exception as e:
+        logger.error(f"Error deleting files: {e}")
+        raise
