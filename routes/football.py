@@ -10,6 +10,8 @@ logger = logging.getLogger(__name__)
 
 football_bp = SecureBlueprint('football', __name__)
 UPLOAD_FOLDER = get_upload_folder('football')
+# v2 (compact odds) storage
+UPLOAD_FOLDER_V2 = get_upload_folder('football_v2')
 
 @football_bp.route('/upload', methods=['POST'])
 def upload_file():
@@ -17,6 +19,35 @@ def upload_file():
     if not file or not allowed_file(file.filename):
         return {"error": "Invalid file type"}, 400
     return handle_file_upload(request, UPLOAD_FOLDER, logger)
+
+
+# v2 (compact odds) routes
+@football_bp.route('/v2/upload', methods=['POST'])
+def upload_file_v2():
+    """Upload compact (v2) football data."""
+    file = request.files.get('file')
+    if not file or not allowed_file(file.filename):
+        return {"error": "Invalid file type"}, 400
+    return handle_file_upload(request, UPLOAD_FOLDER_V2, logger)
+
+@football_bp.route('/v2/<filename>', methods=['GET'])
+def serve_file_route_v2(filename):
+    """Serve a compact (v2) football data file by filename."""
+    return serve_file(filename, UPLOAD_FOLDER_V2)
+
+@football_bp.route('/v2/', methods=['GET'])
+def list_files_route_v2():
+    """List compact (v2) football data files."""
+    return list_files(UPLOAD_FOLDER_V2, 'football_v2')
+
+@football_bp.route('/v2/delete_all', methods=['DELETE'])
+def delete_all_files_route_v2():
+    """Delete all compact (v2) football data files."""
+    try:
+        deleted_files = delete_all_files(UPLOAD_FOLDER_V2, logger)
+        return {"deleted_files": deleted_files}, 200
+    except Exception as e:
+        return {"error": str(e)}, 500
 
 @football_bp.route('/<filename>', methods=['GET'])
 def serve_file_route(filename):
